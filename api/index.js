@@ -4,9 +4,9 @@ const app = Fastify({
   logger: true,
 })
 
-app.get('/', async (req, reply) => {
-  return reply.status(200).type('text/html').send(html)
-})
+app.get("/", async (request, reply) => {
+  reply.send({ message: "Twilio Media Stream Server is running!" });
+});
 
 export default async function handler(req, reply) {
   await app.ready()
