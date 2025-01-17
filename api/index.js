@@ -19,8 +19,8 @@ if (!OPENAI_API_KEY) {
 const fastify = Fastify({
   logger: true,
 });
-fastify.register(fastifyFormBody);
-fastify.register(fastifyWs);
+// fastify.register(fastifyFormBody);
+// fastify.register(fastifyWs);
 
 app.get("/", async (request, reply) => {
   reply.send({ message: "Twilio Media Stream Server is running!" });
