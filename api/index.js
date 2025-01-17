@@ -22,11 +22,11 @@ const fastify = Fastify({
 // fastify.register(fastifyFormBody);
 // fastify.register(fastifyWs);
 
-app.get("/", async (request, reply) => {
+fastify.get("/", async (request, reply) => {
   reply.send({ message: "Twilio Media Stream Server is running!" });
 });
 
 export default async function handler(req, reply) {
-  await app.ready();
-  app.server.emit("request", req, reply);
+  await fastify.ready();
+  fastify.server.emit("request", req, reply);
 }
