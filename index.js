@@ -104,7 +104,7 @@ fastify.register(async (fastify) => {
       openAiWs.send(JSON.stringify(sessionUpdate));
 
       // Uncomment the following line to have AI speak first:
-      // sendInitialConversationItem();
+      sendInitialConversationItem();
     };
 
     // Send initial conversation item if AI talks first
@@ -294,7 +294,12 @@ fastify.register(async (fastify) => {
   });
 });
 
-export default async function handler(req, reply) {
-  await fastify.ready();
-  fastify.server.emit("request", req, reply);
-}
+(async () => {
+  try {
+    await fastify.listen({ port: PORT, host: "0.0.0.0" });
+    console.log(`Server is listening on port ${PORT}`);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
